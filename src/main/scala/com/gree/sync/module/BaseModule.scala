@@ -7,8 +7,10 @@ import com.gree.sync.utils.{PropertyUtil, RedisClient}
 
 class BaseModule extends AbstractModule {
 
+  val env = "dev/"
+
   override def configure(): Unit = {
-    Names.bindProperties(binder(), PropertyUtil.loadFile("gree/kafka.properties"))
+    Names.bindProperties(binder(), PropertyUtil.loadFile(env + "kafka.properties"))
     Names.bindProperties(binder(), PropertyUtil.loadFile("redis.properties"))
     Names.bindProperties(binder(), PropertyUtil.loadFile("config.properties"))
     bind(classOf[RedisClient]).toProvider(classOf[RedisClientProvider]).in(Scopes.SINGLETON)

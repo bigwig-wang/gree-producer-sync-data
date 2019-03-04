@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.{Calendar, Date}
 
 import com.google.inject.Inject
+import com.google.inject.name.Named
 import com.gree.sync.config.KafkaConfig
 import com.gree.sync.utils.{ApiDataUtil, RedisClient}
 import org.slf4j.LoggerFactory
@@ -14,11 +15,15 @@ class KafkaProducer @Inject()(api: ApiDataUtil, redis: RedisClient, kafka: Kafka
 
   val url: String = "http://sysapp.gree.com/GreeMesOpenApi/GreeMesApi/api/services/app/MesQCData/GetQCDatas"
 
-  val topic: String = "test"
+
+  @Inject
+  @Named("kafka.topics")
+  var topic: String = _
+
+
 
   def doSend(date: String, computer: String = "1") = {
     logger.debug(s"date is ${date},computer is ${computer}")
-    updateOffset(date + computer, 0)
     var isFinish = false
     while (!isFinish) {
       isFinish = send2Kafka(date, computer, 1000)
