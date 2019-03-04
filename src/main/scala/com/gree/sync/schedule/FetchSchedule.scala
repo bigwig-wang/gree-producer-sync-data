@@ -30,7 +30,8 @@ class FetchSchedule @Inject()(producer: KafkaProducer) {
   }
 
   private[this] def run(date: String, computer: String): Unit = {
-    logger.info("start send msg date is {},computer is {}", date, computer)
+    logger.info("start send msg date is {} ", date)
+    logger.info("start send msg computer is {}", computer)
     producer.doSend(date, computer)
   }
 

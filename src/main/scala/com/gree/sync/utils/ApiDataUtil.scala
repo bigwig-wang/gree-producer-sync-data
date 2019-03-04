@@ -12,7 +12,7 @@ class ApiDataUtil() {
               endTime: String, skipCount: Integer, maxResult: Integer): JsonObject = {
     logger.debug("get data from api:{},{},{}",url,computer,startTime)
     val json = new JsonParser()
-    val result: HttpResponse[String] = Http(url)
+    val result: HttpResponse[String] = Http(url).timeout(30000, 30000)
       .param("Computer", computer.toString)
       .param("StartDateTime", startTime)
       .param("EndDateTime", endTime)
