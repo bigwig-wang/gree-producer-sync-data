@@ -4,10 +4,11 @@ import java.text.SimpleDateFormat
 import java.util.{Calendar, Date}
 
 import com.google.inject.Inject
-import com.gree.sync.utils.{ApiDataUtil, KafkaUtil, RedisClient}
+import com.gree.sync.config.KafkaConfig
+import com.gree.sync.utils.{ApiDataUtil, RedisClient}
 import org.slf4j.LoggerFactory
 
-class KafkaProducer @Inject()(api: ApiDataUtil, redis: RedisClient, kafka: KafkaUtil) {
+class KafkaProducer @Inject()(api: ApiDataUtil, redis: RedisClient, kafka: KafkaConfig) {
 
   val logger = LoggerFactory.getLogger("KafkaProducer")
 

@@ -1,4 +1,4 @@
-package com.gree.sync.utils
+package com.gree.sync.config
 
 import java.util.Properties
 
@@ -9,7 +9,7 @@ import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, Produce
 import org.apache.kafka.common.serialization.StringSerializer
 
 @Singleton
-class KafkaUtil {
+class KafkaConfig {
 
   @Inject
   @Named("kafka.brokers")
